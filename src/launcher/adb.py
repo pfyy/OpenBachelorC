@@ -1,9 +1,23 @@
 import subprocess
+import os
+import lzma
 
 ADB_FILEPATH = "platform-tools/adb.exe"
 
 MAX_NUM_MUMU_EMU = 4
 MAX_NUM_LD_EMU = 4
+
+ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
+    "x86_64": "frida-server/frida-server-16.5.9-android-x86_64.xz",
+    "arm64-v8a": "frida-server/frida-server-16.5.9-android-arm64.xz",
+    "x86": "frida-server/frida-server-16.5.9-android-x86.xz",
+    "armeabi-v7a": "frida-server/frida-server-16.5.9-android-arm.xz",
+    "armeabi": "frida-server/frida-server-16.5.9-android-arm.xz",
+}
+
+ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/frida-server"
+
+TMP_DIRPATH = "tmp/"
 
 
 def get_running_emulators():
@@ -40,3 +54,69 @@ def connect_to_emulator():
 
     for proc in proc_lst:
         proc.wait()
+
+
+def get_emulator_arch(emulator_id):
+    proc = subprocess.run(
+        [ADB_FILEPATH, "-s", emulator_id, "shell", "getprop ro.product.cpu.abi"],
+        capture_output=True,
+        text=True,
+    )
+
+    return proc.stdout.strip()
+
+
+def upload_frida_server_if_necessary(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            f"test -f '{ANDROID_FRIDA_SERVER_FILEPATH}' || echo 1",
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if not proc.stdout.strip():
+        print("info: frida server found")
+        return
+
+    print("info: frida server not found")
+
+    os.makedirs(TMP_DIRPATH, exist_ok=True)
+
+    emulator_arch = get_emulator_arch(emulator_id)
+    print(f"info: emulator arch {emulator_arch}")
+    frida_server_xz_filepath = ARCH_TO_FRIDA_SERVER_XZ_FILEPATH[emulator_arch]
+
+    frida_server_filepath = os.path.join(TMP_DIRPATH, "frida-server")
+
+    with lzma.open(frida_server_xz_filepath) as f:
+        frida_server_binary = f.read()
+    with open(frida_server_filepath, "wb") as f:
+        f.write(frida_server_binary)
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "push",
+            frida_server_filepath,
+            ANDROID_FRIDA_SERVER_FILEPATH,
+        ],
+    )
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            f"chmod a+x '{ANDROID_FRIDA_SERVER_FILEPATH}'",
+        ],
+    )
+
+    print("info: frida server uploaded")

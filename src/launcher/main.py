@@ -1,4 +1,8 @@
-from adb import get_running_emulators, connect_to_emulator
+from adb import (
+    get_running_emulators,
+    connect_to_emulator,
+    upload_frida_server_if_necessary,
+)
 
 
 if __name__ == "__main__":
@@ -12,3 +16,6 @@ if __name__ == "__main__":
         exit(1)
 
     emulator_id = running_emulator_id_lst[0]
+    print(f"info: using emulator {emulator_id}")
+
+    upload_frida_server_if_necessary(emulator_id)
