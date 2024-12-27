@@ -120,3 +120,42 @@ def upload_frida_server_if_necessary(emulator_id):
     )
 
     print("info: frida server uploaded")
+
+
+def root_emulator(emulator_id):
+    print("info: root emulator")
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "root",
+        ],
+    )
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "wait-for-device",
+        ],
+    )
+    print("info: emulator rooted")
+
+
+def start_frida_server(emulator_id):
+    root_emulator(emulator_id)
+
+    # flag "-C" avoids blocking
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -D -C",
+        ],
+    )
+
+    print("info: frida server started")
