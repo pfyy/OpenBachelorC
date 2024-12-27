@@ -159,3 +159,10 @@ def start_frida_server(emulator_id):
     )
 
     print("info: frida server started")
+
+
+def start_reverse_proxy(emulator_id, port):
+    proc = subprocess.run(
+        [ADB_FILEPATH, "-s", emulator_id, "reverse", f"tcp:{port}", f"tcp:{port}"],
+    )
+    print("info: adb reverse proxy started")
