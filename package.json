@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/frida-gum": "^18.7.1",
+    "@types/node": "^22.10.2",
+    "frida-compile": "^16.4.1",
+    "frida-il2cpp-bridge": "^0.9.1",
+    "typescript": "^5.7.2"
+  }
+}
