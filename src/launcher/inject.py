@@ -1,5 +1,7 @@
 import frida
 
+from config import config
+
 JAVA_SCRIPT_FILEPATH = "tmp/java.js"
 NATIVE_SCRIPT_FILEPATH = "tmp/native.js"
 
@@ -9,6 +11,14 @@ def load_script(session, script_filepath):
         script_str = f.read()
     script = session.create_script(script_str)
     script.load()
+
+    host = config["host"]
+    port = config["port"]
+    proxy_url = f"http://{host}:{port}"
+
+    script.post({"type": "conf", "k": "proxy_url", "v": proxy_url})
+    script.post({"type": "conf", "k": "no_proxy", "v": config["no_proxy"]})
+
     return script
 
 
