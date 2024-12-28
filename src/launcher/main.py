@@ -6,6 +6,7 @@ from adb import (
     start_reverse_proxy,
 )
 from config import config
+from inject import start_game
 
 
 if __name__ == "__main__":
@@ -32,3 +33,13 @@ if __name__ == "__main__":
 
     if host == "127.0.0.1":
         start_reverse_proxy(emulator_id, port)
+
+    start_game(emulator_id)
+
+    print("info: game started")
+
+    print()
+    print("----------")
+    print()
+
+    input("Press Enter to Exit:\n")
