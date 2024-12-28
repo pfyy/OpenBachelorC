@@ -1,1 +1,2 @@
 frida==16.5.9
+pycryptodome==3.21.0
