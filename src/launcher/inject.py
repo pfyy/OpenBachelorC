@@ -2,8 +2,8 @@ import frida
 
 from config import config
 
-JAVA_SCRIPT_FILEPATH = "tmp/java.js"
-NATIVE_SCRIPT_FILEPATH = "tmp/native.js"
+JAVA_SCRIPT_FILEPATH = "rel/java.js"
+NATIVE_SCRIPT_FILEPATH = "rel/native.js"
 
 
 def load_script(session, script_filepath):
