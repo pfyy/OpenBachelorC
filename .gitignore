@@ -1,4 +1,5 @@
-*.ts
+/src/script/**/*.ts
+/src/script/**/*.js
 /key.png
 /tmp/
 

@@ -4,6 +4,8 @@
     "@types/node": "^22.10.2",
     "frida-compile": "^16.4.1",
     "frida-il2cpp-bridge": "^0.9.1",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
