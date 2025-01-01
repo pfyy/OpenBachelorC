@@ -110,6 +110,7 @@
   },
   "files": [
     "src/script/java/index.ts",
-    "src/script/native/index.ts"
+    "src/script/native/index.ts",
+    "src/script/extra/index.ts"
   ]
 }

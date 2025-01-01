@@ -9,6 +9,7 @@ TARGET_TS_FILEPATH_LST = [
     "src/script/java/index.ts",
     "src/script/native/index.ts",
     "src/script/util/index.ts",
+    "src/script/extra/index.ts",
     "build_js_rel.cmd",
     "src/helper/helper.js",
     "src/helper/helper.py",

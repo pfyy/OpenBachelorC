@@ -4,6 +4,7 @@ from config import config
 
 JAVA_SCRIPT_FILEPATH = "rel/java.js"
 NATIVE_SCRIPT_FILEPATH = "rel/native.js"
+EXTRA_SCRIPT_FILEPATH = "tmp/extra.js"
 
 
 def load_script(device, pid, script_filepath, script_config):
@@ -39,5 +40,8 @@ def start_game(emulator_id):
         NATIVE_SCRIPT_FILEPATH,
         {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
     )
+
+    if config["enable_extra"]:
+        load_script(device, pid, EXTRA_SCRIPT_FILEPATH, config["extra_config"])
 
     device.resume(pid)

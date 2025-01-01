@@ -1,5 +1,9 @@
 {
     "host": "127.0.0.1",
     "port": 8443,
-    "no_proxy": false
+    "no_proxy": false,
+    "enable_extra": true,
+    "extra_config": {
+        "pause_deploy": true
+    }
 }
