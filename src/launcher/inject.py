@@ -4,7 +4,7 @@ from config import config
 
 JAVA_SCRIPT_FILEPATH = "rel/java.js"
 NATIVE_SCRIPT_FILEPATH = "rel/native.js"
-EXTRA_SCRIPT_FILEPATH = "tmp/extra.js"
+EXTRA_SCRIPT_FILEPATH = "rel/extra.js"
 
 
 def load_script(device, pid, script_filepath, script_config):
