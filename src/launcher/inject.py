@@ -6,20 +6,16 @@ JAVA_SCRIPT_FILEPATH = "rel/java.js"
 NATIVE_SCRIPT_FILEPATH = "rel/native.js"
 
 
-def load_script(session, script_filepath):
+def load_script(device, pid, script_filepath, script_config):
+    session = device.attach(pid)
+
     with open(script_filepath, encoding="utf-8") as f:
         script_str = f.read()
     script = session.create_script(script_str)
     script.load()
 
-    host = config["host"]
-    port = config["port"]
-    proxy_url = f"http://{host}:{port}"
-
-    script.post({"type": "conf", "k": "proxy_url", "v": proxy_url})
-    script.post({"type": "conf", "k": "no_proxy", "v": config["no_proxy"]})
-
-    return script
+    for k, v in script_config.items():
+        script.post({"type": "conf", "k": k, "v": v})
 
 
 def start_game(emulator_id):
@@ -27,10 +23,21 @@ def start_game(emulator_id):
 
     pid = device.spawn("com.hypergryph.arknights")
 
-    java_session = device.attach(pid)
-    native_session = device.attach(pid)
+    host = config["host"]
+    port = config["port"]
+    proxy_url = f"http://{host}:{port}"
 
-    java_script = load_script(java_session, JAVA_SCRIPT_FILEPATH)
-    native_script = load_script(native_session, NATIVE_SCRIPT_FILEPATH)
+    load_script(
+        device,
+        pid,
+        JAVA_SCRIPT_FILEPATH,
+        {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
+    )
+    load_script(
+        device,
+        pid,
+        NATIVE_SCRIPT_FILEPATH,
+        {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
+    )
 
     device.resume(pid)
