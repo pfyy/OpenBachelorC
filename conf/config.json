@@ -5,6 +5,8 @@
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,
-        "3x_speed": true
+        "3x_speed": true,
+        "vision": true,
+        "vision_font_size": 16
     }
 }
