@@ -7,6 +7,6 @@
         "pause_deploy": true,
         "3x_speed": true,
         "vision": true,
-        "vision_font_size": 20
+        "vision_font_size": 22
     }
 }
