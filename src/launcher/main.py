@@ -1,3 +1,5 @@
+import sys
+
 from adb import (
     get_running_emulators,
     connect_to_emulator,
@@ -10,6 +12,9 @@ from inject import start_game
 
 
 if __name__ == "__main__":
+    if "--no_proxy" in sys.argv:
+        config["no_proxy"] = True
+
     running_emulator_id_lst = get_running_emulators()
 
     if not running_emulator_id_lst:
