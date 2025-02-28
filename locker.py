@@ -10,6 +10,7 @@ TARGET_TS_FILEPATH_LST = [
     "src/script/native/index.ts",
     "src/script/util/index.ts",
     "src/script/extra/index.ts",
+    "src/script/trainer/index.ts",
     "build_js_rel.cmd",
     "src/helper/helper.js",
     "src/helper/helper.py",
