@@ -8,5 +8,7 @@
         "3x_speed": true,
         "vision": true,
         "vision_font_size": 22
-    }
+    },
+    "enable_trainer": true,
+    "trainer_config": {}
 }
