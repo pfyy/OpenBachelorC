@@ -22,6 +22,18 @@ def load_script(device, pid, script_filepath, script_config):
     return script
 
 
+class Game:
+    def __init__(
+        self, device, pid, java_script, native_script, extra_script, trainer_script
+    ):
+        self.device = device
+        self.pid = pid
+        self.java_script = java_script
+        self.native_script = native_script
+        self.extra_script = extra_script
+        self.trainer_script = trainer_script
+
+
 def start_game(emulator_id):
     device = frida.get_device(emulator_id)
 
@@ -57,3 +69,7 @@ def start_game(emulator_id):
         )
 
     device.resume(pid)
+
+    game = Game(device, pid, java_script, native_script, extra_script, trainer_script)
+
+    return game

@@ -1,5 +1,7 @@
 import sys
 
+from prompt_toolkit import PromptSession
+
 from adb import (
     get_running_emulators,
     connect_to_emulator,
@@ -39,12 +41,18 @@ if __name__ == "__main__":
     if host == "127.0.0.1":
         start_reverse_proxy(emulator_id, port)
 
-    start_game(emulator_id)
+    game = start_game(emulator_id)
 
     print("info: game started")
 
-    print()
     print("----------")
-    print()
 
-    input("Press Enter to Exit:\n")
+    session = PromptSession()
+
+    while True:
+        try:
+            text = session.prompt("> ")
+        except KeyboardInterrupt:
+            continue
+        except EOFError:
+            break
