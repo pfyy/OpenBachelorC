@@ -34,9 +34,10 @@ class Game:
         self.trainer_script = trainer_script
 
     def exec_trainer_command(self, trainer_command_name):
-        self.trainer_script.post(
-            {"type": "conf", "k": "invoke", "v": trainer_command_name}
-        )
+        if self.trainer_script is not None:
+            self.trainer_script.post(
+                {"type": "conf", "k": "invoke", "v": trainer_command_name}
+            )
 
 
 def start_game(emulator_id):

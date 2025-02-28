@@ -56,3 +56,5 @@ if __name__ == "__main__":
             continue
         except EOFError:
             break
+
+        game.exec_trainer_command(text)
