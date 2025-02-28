@@ -33,6 +33,11 @@ class Game:
         self.extra_script = extra_script
         self.trainer_script = trainer_script
 
+    def exec_trainer_command(self, trainer_command_name):
+        self.trainer_script.post(
+            {"type": "conf", "k": "invoke", "v": trainer_command_name}
+        )
+
 
 def start_game(emulator_id):
     device = frida.get_device(emulator_id)
