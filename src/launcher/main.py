@@ -17,6 +17,10 @@ if __name__ == "__main__":
     if "--no_proxy" in sys.argv:
         config["no_proxy"] = True
 
+    if config["no_proxy"] and config["enable_trainer"]:
+        print("warn: trainer is disabled when no proxy is enabled")
+        config["enable_trainer"] = False
+
     running_emulator_id_lst = get_running_emulators()
 
     if not running_emulator_id_lst:
