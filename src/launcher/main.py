@@ -61,4 +61,5 @@ if __name__ == "__main__":
         except EOFError:
             break
 
-        game.exec_trainer_command(text)
+        for cmd in text.split():
+            game.exec_trainer_command(cmd)
