@@ -85,5 +85,29 @@ if __name__ == "__main__":
         except EOFError:
             break
 
-        for cmd in text.split():
-            game.exec_trainer_command(cmd)
+        if not text:
+            continue
+
+        if text == "!dump!":
+            game.exec_trainer_command("dump")
+            continue
+
+        cmd_arr = text.split()
+        cmd_flag = True
+
+        if not cmd_arr:
+            continue
+
+        if cmd_arr[0] == "enable":
+            cmd_arr = cmd_arr[1:]
+        elif cmd_arr[0] == "disable":
+            cmd_arr = cmd_arr[1:]
+            cmd_flag = False
+
+        if cmd_flag:
+            cmd_prefix = "enable:"
+        else:
+            cmd_prefix = "disable:"
+
+        for cmd in cmd_arr:
+            game.exec_trainer_command(f"{cmd_prefix}{cmd}")
