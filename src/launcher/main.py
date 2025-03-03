@@ -31,6 +31,7 @@ trainer_word_completer = WordCompleter(
         "global_range",
         "anti_air",
         "true_aoe",
+        "no_ban_card",
     ],
     match_middle=True,
 )
