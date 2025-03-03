@@ -1,6 +1,7 @@
 import sys
 
 from prompt_toolkit import PromptSession
+from prompt_toolkit.history import FileHistory
 
 from adb import (
     get_running_emulators,
@@ -51,7 +52,7 @@ if __name__ == "__main__":
 
     print("----------")
 
-    session = PromptSession()
+    session = PromptSession(history=FileHistory("trainer.txt"))
 
     while True:
         try:
