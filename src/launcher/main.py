@@ -2,6 +2,7 @@ import sys
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
+from prompt_toolkit.completion import WordCompleter
 
 from adb import (
     get_running_emulators,
@@ -13,6 +14,36 @@ from adb import (
 from config import config
 from inject import start_game
 
+trainer_word_completer = WordCompleter(
+    [
+        "enable:zero_cost",
+        "disable:zero_cost",
+        "enable:zero_deploy_cnt",
+        "disable:zero_deploy_cnt",
+        "enable:deploy_everywhere",
+        "disable:deploy_everywhere",
+        "enable:zero_cooldown",
+        "disable:zero_cooldown",
+        "enable:unlimited_token",
+        "disable:unlimited_token",
+        "enable:no_sp",
+        "disable:no_sp",
+        "enable:withdraw_everything",
+        "disable:withdraw_everything",
+        "enable:heal_everyone",
+        "disable:heal_everyone",
+        "enable:unlimited_ammo",
+        "disable:unlimited_ammo",
+        "enable:eat_enemy",
+        "disable:eat_enemy",
+        "enable:global_range",
+        "disable:global_range",
+        "enable:anti_air",
+        "disable:anti_air",
+        "enable:true_aoe",
+        "disable:true_aoe",
+    ]
+)
 
 if __name__ == "__main__":
     if "--no_proxy" in sys.argv:
@@ -52,7 +83,9 @@ if __name__ == "__main__":
 
     print("----------")
 
-    session = PromptSession(history=FileHistory("trainer.txt"))
+    session = PromptSession(
+        history=FileHistory("trainer.txt"), completer=trainer_word_completer
+    )
 
     while True:
         try:
