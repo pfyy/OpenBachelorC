@@ -38,6 +38,8 @@ class Game:
             self.trainer_script.post(
                 {"type": "conf", "k": "invoke", "v": trainer_command_name}
             )
+        else:
+            print("err: trainer is disabled")
 
 
 def start_game(emulator_id):
