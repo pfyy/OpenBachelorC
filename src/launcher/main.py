@@ -86,11 +86,8 @@ if __name__ == "__main__":
         except EOFError:
             break
 
-        if not text:
-            continue
-
-        if text == "!dump!":
-            game.exec_trainer_command("dump")
+        if text.startswith("!"):
+            game.exec_trainer_command(text[1:])
             continue
 
         cmd_arr = text.split()
