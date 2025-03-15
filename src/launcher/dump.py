@@ -8,6 +8,7 @@ DUMP_DIRPATH = "dump/"
 remote_filepath_prefix = "/sdcard/Android/data/com.hypergryph.arknights/files/"
 
 remote_local_filename_mapping = {
+    "dump.cs": "dump.cs",
     "Torappu.SkinTable.json": "skin_table.json",
     "Torappu.CharWordTable.json": "charword_table.json",
     "Torappu.UniEquipTable.json": "uniequip_table.json",
@@ -47,3 +48,5 @@ def pull_dumped_json(emulator_id):
 
             with open(local_filepath, "w", encoding="utf-8") as f:
                 json.dump(json_obj, f, ensure_ascii=False, indent=4)
+        else:
+            print(f"err: failed to pull remote {remote_filename}")
