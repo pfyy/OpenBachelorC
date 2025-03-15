@@ -43,10 +43,11 @@ def pull_dumped_json(emulator_id):
         )
 
         if os.path.isfile(local_filepath):
-            with open(local_filepath, encoding="utf-8") as f:
-                json_obj = json.load(f)
+            if local_filename.endswith(".json"):
+                with open(local_filepath, encoding="utf-8") as f:
+                    json_obj = json.load(f)
 
-            with open(local_filepath, "w", encoding="utf-8") as f:
-                json.dump(json_obj, f, ensure_ascii=False, indent=4)
+                with open(local_filepath, "w", encoding="utf-8") as f:
+                    json.dump(json_obj, f, ensure_ascii=False, indent=4)
         else:
             print(f"err: failed to pull remote {remote_filename}")
