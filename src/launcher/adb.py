@@ -166,3 +166,10 @@ def start_reverse_proxy(emulator_id, port):
         [ADB_FILEPATH, "-s", emulator_id, "reverse", f"tcp:{port}", f"tcp:{port}"],
     )
     print("info: adb reverse proxy started")
+
+
+def pull_file(emulator_id, remote_filepath, local_filepath):
+    proc = subprocess.run(
+        [ADB_FILEPATH, "-s", emulator_id, "pull", remote_filepath, local_filepath],
+    )
+    print(f"info: pulled remote {remote_filepath} to local {local_filepath}")

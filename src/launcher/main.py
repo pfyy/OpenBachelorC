@@ -13,6 +13,8 @@ from adb import (
 )
 from config import config
 from inject import start_game
+from util import register_callback_func, invoke_callback_func
+from dump import pull_dumped_json
 
 trainer_word_completer = WordCompleter(
     [
@@ -74,6 +76,8 @@ if __name__ == "__main__":
 
     print("----------")
 
+    register_callback_func("pull_dumped_json", lambda: pull_dumped_json(emulator_id))
+
     session = PromptSession(
         history=FileHistory("trainer.txt"), completer=trainer_word_completer
     )
@@ -85,6 +89,10 @@ if __name__ == "__main__":
             continue
         except EOFError:
             break
+
+        if text.startswith("?"):
+            invoke_callback_func(text[1:])
+            continue
 
         if text.startswith("!"):
             game.exec_trainer_command(text[1:])
