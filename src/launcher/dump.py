@@ -27,6 +27,11 @@ remote_local_filename_mapping = {
     "Torappu.BuildingData.json": "building_data.json",
     "Torappu.SandboxPermTable.json": "sandbox_perm_table.json",
     "Torappu.RoguelikeTopicTable.json": "roguelike_topic_table.json",
+    "System.Collections.Generic.Dictionary`2[System.String,Torappu.SkillDataBundle].json": "skill_table.json",
+    "System.Collections.Generic.Dictionary`2[System.String,Torappu.BattleEquipPack].json": "battle_equip_table.json",
+    "Torappu.GachaData.json": "gacha_table.json",
+    "Torappu.InventoryData.json": "item_table.json",
+    "Torappu.CampaignTable.json": "campaign_table.json",
 }
 
 
