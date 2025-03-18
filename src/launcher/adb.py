@@ -15,7 +15,7 @@ ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
     "armeabi": "frida-server/frida-server-16.5.9-android-arm.xz",
 }
 
-ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/frida-server"
+ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/frida-server-16.5.9"
 
 TMP_DIRPATH = "tmp/"
 
