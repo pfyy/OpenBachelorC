@@ -42,6 +42,10 @@ if __name__ == "__main__":
     if "--no_proxy" in sys.argv:
         config["no_proxy"] = True
 
+    if "--dump_json" in sys.argv:
+        config["enable_trainer"] = True
+        config["trainer_config"]["dump_json"] = True
+
     if config["no_proxy"] and config["enable_trainer"]:
         print("warn: trainer is disabled when no proxy is enabled")
         config["enable_trainer"] = False
