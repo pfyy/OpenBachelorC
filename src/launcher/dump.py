@@ -59,6 +59,8 @@ remote_local_filename_mapping = {
 def pull_dumped_json(emulator_id):
     os.makedirs(DUMP_DIRPATH, exist_ok=True)
 
+    err_filename_lst = []
+
     for remote_filename, local_filename in remote_local_filename_mapping.items():
         remote_filepath = os.path.join(remote_filepath_prefix, remote_filename)
         local_filepath = os.path.join(DUMP_DIRPATH, local_filename)
@@ -76,4 +78,15 @@ def pull_dumped_json(emulator_id):
                 with open(local_filepath, "w", encoding="utf-8") as f:
                     json.dump(json_obj, f, ensure_ascii=False, indent=4)
         else:
+            err_filename_lst.append(remote_filename)
             print(f"err: failed to pull remote {remote_filename}")
+
+    print("----------")
+
+    print(f"summary: {len(err_filename_lst)} error(s)")
+
+    if err_filename_lst:
+        print(
+            "failed to pull remote",
+            ",".join([remote_filename for remote_filename in err_filename_lst]),
+        )
