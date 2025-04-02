@@ -10,6 +10,7 @@ from adb import (
     upload_frida_server_if_necessary,
     start_frida_server,
     start_reverse_proxy,
+    clear_dumped_json,
 )
 from config import config
 from inject import start_game
@@ -81,6 +82,7 @@ if __name__ == "__main__":
     print("----------")
 
     register_callback_func("pull_dumped_json", lambda: pull_dumped_json(emulator_id))
+    register_callback_func("clear_dumped_json", lambda: clear_dumped_json(emulator_id))
 
     session = PromptSession(
         history=FileHistory("trainer.txt"), completer=trainer_word_completer

@@ -173,3 +173,17 @@ def pull_file(emulator_id, remote_filepath, local_filepath):
         [ADB_FILEPATH, "-s", emulator_id, "pull", remote_filepath, local_filepath],
     )
     print(f"info: pulled remote {remote_filepath} to local {local_filepath}")
+
+
+def clear_dumped_json(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            "rm",
+            "/sdcard/Android/data/com.hypergryph.arknights/files/*.json",
+            "/sdcard/Android/data/com.hypergryph.arknights/files/*.cs",
+        ],
+    )
