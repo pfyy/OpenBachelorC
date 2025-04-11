@@ -2,6 +2,8 @@ import subprocess
 import os
 import lzma
 
+from config import config
+
 ADB_FILEPATH = "platform-tools/adb.exe"
 
 MAX_NUM_MUMU_EMU = 4
@@ -147,6 +149,11 @@ def root_emulator(emulator_id):
 def start_frida_server(emulator_id):
     root_emulator(emulator_id)
 
+    start_frida_server_cmd = f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -D -C"
+
+    if config["use_su"]:
+        start_frida_server_cmd = f"su -c {start_frida_server_cmd}"
+
     # flag "-C" avoids blocking
     proc = subprocess.run(
         [
@@ -154,7 +161,7 @@ def start_frida_server(emulator_id):
             "-s",
             emulator_id,
             "shell",
-            f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -D -C",
+            start_frida_server_cmd,
         ],
     )
 
