@@ -17,7 +17,7 @@ ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
     "armeabi": "frida-server/frida-server-16.5.9-android-arm.xz",
 }
 
-ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/frida-server-16.5.9"
+ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/florida-16.5.9"
 
 TMP_DIRPATH = "tmp/"
 
@@ -149,7 +149,11 @@ def root_emulator(emulator_id):
 def start_frida_server(emulator_id):
     root_emulator(emulator_id)
 
-    start_frida_server_cmd = f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -D -C"
+    frida_port = config["frida_port"]
+
+    start_frida_server_cmd = (
+        f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -l 127.0.0.1:{frida_port} -D -C"
+    )
 
     if config["use_su"]:
         start_frida_server_cmd = f"su -c {start_frida_server_cmd}"
@@ -173,6 +177,13 @@ def start_reverse_proxy(emulator_id, port):
         [ADB_FILEPATH, "-s", emulator_id, "reverse", f"tcp:{port}", f"tcp:{port}"],
     )
     print("info: adb reverse proxy started")
+
+
+def start_forward_proxy(emulator_id, port):
+    proc = subprocess.run(
+        [ADB_FILEPATH, "-s", emulator_id, "forward", "tcp:27042", f"tcp:{port}"],
+    )
+    print("info: adb forward proxy started")
 
 
 def pull_file(emulator_id, remote_filepath, local_filepath):

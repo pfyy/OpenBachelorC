@@ -1,6 +1,7 @@
 {
     "host": "127.0.0.1",
     "port": 8443,
+    "frida_port": 9443,
     "no_proxy": false,
     "use_su": true,
     "enable_extra": true,

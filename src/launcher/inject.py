@@ -47,7 +47,7 @@ class Game:
 
 
 def start_game(emulator_id):
-    device = frida.get_device(emulator_id)
+    device = frida.get_remote_device()
 
     pid = device.spawn("com.hypergryph.arknights")
 
