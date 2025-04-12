@@ -1,11 +1,15 @@
+import os
+
 import frida
 
 from config import config
 
-JAVA_SCRIPT_FILEPATH = "rel/java.js"
-NATIVE_SCRIPT_FILEPATH = "rel/native.js"
-EXTRA_SCRIPT_FILEPATH = "rel/extra.js"
-TRAINER_SCRIPT_FILEPATH = "rel/trainer.js"
+SCRIPT_DIRPATH = "rel/"
+
+JAVA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "java.js")
+NATIVE_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "native.js")
+EXTRA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "extra.js")
+TRAINER_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "trainer.js")
 
 
 def load_script(device, pid, script_filepath, script_config):
