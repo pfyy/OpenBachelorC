@@ -97,6 +97,11 @@ def upload_frida_server_if_necessary(emulator_id):
 
     with lzma.open(frida_server_xz_filepath) as f:
         frida_server_binary = f.read()
+
+    frida_server_binary = frida_server_binary.replace(
+        b"frida-agent-<arch>.so", b"florida-123-<arch>.so"
+    )
+
     with open(frida_server_filepath, "wb") as f:
         f.write(frida_server_binary)
 
