@@ -1,4 +1,5 @@
 import os
+import time
 
 import frida
 
@@ -54,6 +55,8 @@ def start_game(emulator_id):
         pid = "Gadget"
 
         start_gadget(emulator_id)
+
+        time.sleep(1.0)
     else:
         pid = device.spawn("com.hypergryph.arknights")
 
