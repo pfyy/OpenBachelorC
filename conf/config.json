@@ -5,6 +5,7 @@
     "no_proxy": false,
     "use_su": true,
     "use_gadget": false,
+    "gadget_port": 10443,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,

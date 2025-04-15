@@ -48,15 +48,13 @@ class Game:
 
 
 def start_game(emulator_id):
-    if config["use_gadget"]:
-        device = frida.get_usb_device()
+    device = frida.get_remote_device()
 
+    if config["use_gadget"]:
         pid = "Gadget"
 
         start_gadget(emulator_id)
     else:
-        device = frida.get_remote_device()
-
         pid = device.spawn("com.hypergryph.arknights")
 
     host = config["host"]
