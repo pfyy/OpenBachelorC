@@ -210,3 +210,15 @@ def clear_dumped_json(emulator_id):
             "/sdcard/Android/data/com.hypergryph.arknights/files/*.cs",
         ],
     )
+
+
+def start_gadget(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            "monkey -p com.hypergryph.arknights -c android.intent.category.LAUNCHER 1",
+        ],
+    )

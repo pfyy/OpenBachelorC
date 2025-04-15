@@ -4,6 +4,7 @@
     "frida_port": 9443,
     "no_proxy": false,
     "use_su": true,
+    "use_gadget": false,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,

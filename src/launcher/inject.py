@@ -3,6 +3,7 @@ import os
 import frida
 
 from config import config
+from adb import start_gadget
 
 SCRIPT_DIRPATH = "rel/"
 
@@ -47,9 +48,16 @@ class Game:
 
 
 def start_game(emulator_id):
-    device = frida.get_remote_device()
+    if config["use_gadget"]:
+        device = frida.get_usb_device()
 
-    pid = device.spawn("com.hypergryph.arknights")
+        pid = "Gadget"
+
+        start_gadget(emulator_id)
+    else:
+        device = frida.get_remote_device()
+
+        pid = device.spawn("com.hypergryph.arknights")
 
     host = config["host"]
     port = config["port"]
