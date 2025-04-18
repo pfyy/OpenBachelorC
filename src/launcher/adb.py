@@ -216,6 +216,6 @@ def start_gadget(emulator_id):
             "-s",
             emulator_id,
             "shell",
-            "monkey -p com.hypergryph.arknights -c android.intent.category.LAUNCHER 1",
+            "monkey -p anime.pvz.online -c android.intent.category.LAUNCHER 1",
         ],
     )
