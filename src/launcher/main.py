@@ -10,6 +10,7 @@ from adb import (
     upload_frida_server_if_necessary,
     start_frida_server,
     start_reverse_proxy,
+    clear_forward_proxy,
     start_forward_proxy,
     clear_dumped_json,
 )
@@ -79,6 +80,7 @@ if __name__ == "__main__":
     frida_port = config["frida_port"]
     gadget_port = config["gadget_port"]
 
+    clear_forward_proxy(emulator_id)
     if config["use_gadget"]:
         start_forward_proxy(emulator_id, gadget_port)
         start_forward_proxy(emulator_id, frida_port, frida_port)

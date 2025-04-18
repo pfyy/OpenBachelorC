@@ -181,6 +181,19 @@ def start_reverse_proxy(emulator_id, port):
     print("info: adb reverse proxy started")
 
 
+def clear_forward_proxy(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "forward",
+            "--remove-all",
+        ],
+    )
+    print("info: adb forward proxy cleared")
+
+
 def start_forward_proxy(emulator_id, remote_port, local_port=27042):
     proc = subprocess.run(
         [
