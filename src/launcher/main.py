@@ -76,11 +76,15 @@ if __name__ == "__main__":
     if host == "127.0.0.1":
         start_reverse_proxy(emulator_id, port)
 
+    frida_port = config["frida_port"]
+    gadget_port = config["gadget_port"]
+
     if config["use_gadget"]:
-        frida_port = config["gadget_port"]
+        start_forward_proxy(emulator_id, gadget_port)
+        start_forward_proxy(emulator_id, frida_port, frida_port)
     else:
-        frida_port = config["frida_port"]
-    start_forward_proxy(emulator_id, frida_port)
+        start_forward_proxy(emulator_id, frida_port)
+        start_forward_proxy(emulator_id, gadget_port, gadget_port)
 
     game = start_game(emulator_id)
 
