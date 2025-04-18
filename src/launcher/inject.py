@@ -56,7 +56,7 @@ def start_game(emulator_id):
 
         start_gadget(emulator_id)
 
-        time.sleep(1.0)
+        time.sleep(0.1)
     else:
         pid = device.spawn("com.hypergryph.arknights")
 
