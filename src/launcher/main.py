@@ -86,7 +86,6 @@ if __name__ == "__main__":
         start_forward_proxy(emulator_id, frida_port, frida_port)
     else:
         start_forward_proxy(emulator_id, frida_port)
-        start_forward_proxy(emulator_id, gadget_port, gadget_port)
 
     game = start_game(emulator_id)
 
