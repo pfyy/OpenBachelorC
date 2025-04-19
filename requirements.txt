@@ -2,3 +2,4 @@ frida==16.6.6
 pycryptodome==3.21.0
 prompt_toolkit==3.0.50
 requests==2.32.3
+frida-tools==13.7.1

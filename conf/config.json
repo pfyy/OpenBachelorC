@@ -6,6 +6,7 @@
     "use_su": true,
     "use_gadget": false,
     "gadget_port": 10443,
+    "dual_mode": false,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,
