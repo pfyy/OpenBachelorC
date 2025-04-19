@@ -1,11 +1,11 @@
 {
     "host": "127.0.0.1",
     "port": 8443,
-    "frida_port": 9443,
     "no_proxy": false,
+    "frida_port": 9443,
+    "gadget_port": 10443,
     "use_su": true,
     "use_gadget": false,
-    "gadget_port": 10443,
     "dual_mode": false,
     "enable_extra": true,
     "extra_config": {
