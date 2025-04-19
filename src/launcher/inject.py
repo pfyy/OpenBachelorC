@@ -14,12 +14,20 @@ EXTRA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "extra.js")
 TRAINER_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "trainer.js")
 
 
+def handle_script_message(script_filepath, message, data):
+    print(f"message [{os.path.basename(script_filepath)}]:", message)
+
+
 def load_script(device, pid, script_filepath, script_config):
     session = device.attach(pid)
 
     with open(script_filepath, encoding="utf-8") as f:
         script_str = f.read()
     script = session.create_script(script_str)
+    script.on(
+        "message",
+        lambda message, data: handle_script_message(script_filepath, message, data),
+    )
     script.load()
 
     for k, v in script_config.items():
