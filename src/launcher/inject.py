@@ -2,6 +2,7 @@ import os
 import time
 
 import frida
+import requests
 
 from config import config
 from adb import start_gadget
@@ -12,6 +13,14 @@ JAVA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "java.js")
 NATIVE_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "native.js")
 EXTRA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "extra.js")
 TRAINER_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "trainer.js")
+
+
+def test_remote_port():
+    try:
+        requests.get("http://127.0.0.1:27042", proxies={"http": "", "https": ""})
+        return True
+    except Exception:
+        return False
 
 
 def handle_script_message(script_filepath, message, data):
@@ -64,7 +73,12 @@ def start_game(emulator_id):
 
         start_gadget(emulator_id)
 
-        time.sleep(0.1)
+        for i in range(100):
+            if test_remote_port():
+                break
+            else:
+                time.sleep(0.1)
+
     else:
         pid = device.spawn("com.hypergryph.arknights")
 
