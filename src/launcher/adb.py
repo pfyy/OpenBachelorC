@@ -1,10 +1,14 @@
 import subprocess
 import os
 import lzma
+import platform
 
 from config import config
 
-ADB_FILEPATH = "platform-tools/adb.exe"
+if platform.system() == "Windows":
+    ADB_FILEPATH = "platform-tools/adb.exe"
+else:
+    ADB_FILEPATH = "adb"
 
 MAX_NUM_MUMU_EMU = 4
 MAX_NUM_LD_EMU = 4
@@ -39,11 +43,11 @@ def connect_to_emulator():
 
     # MUMU
     for i in range(MAX_NUM_MUMU_EMU):
-        emulator_id_lst.append(f"127.0.0.1:{16384+32*i}")
+        emulator_id_lst.append(f"127.0.0.1:{16384 + 32 * i}")
 
     # LD
     for i in range(MAX_NUM_LD_EMU):
-        emulator_id_lst.append(f"127.0.0.1:{5555+2*i}")
+        emulator_id_lst.append(f"127.0.0.1:{5555 + 2 * i}")
 
     # try connecting
     proc_lst = []
