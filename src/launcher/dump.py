@@ -1,11 +1,12 @@
 import os
 import json
 
+from const import PACKAGE_NAME
 from adb import pull_file
 
 DUMP_DIRPATH = "dump/"
 
-remote_filepath_prefix = "/sdcard/Android/data/com.hypergryph.arknights/files/"
+remote_filepath_prefix = f"/sdcard/Android/data/{PACKAGE_NAME}/files/"
 
 remote_local_filename_mapping = {
     "dump.cs": "dump.cs",

@@ -6,6 +6,7 @@ import json
 import frida
 import requests
 
+from const import PACKAGE_NAME
 from config import config
 from adb import start_gadget
 
@@ -82,7 +83,7 @@ def start_game(emulator_id):
                 time.sleep(0.1)
 
     else:
-        pid = device.spawn("com.hypergryph.arknights")
+        pid = device.spawn(PACKAGE_NAME)
 
     host = config["host"]
     port = config["port"]

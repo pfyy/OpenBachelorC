@@ -3,6 +3,7 @@ import os
 import lzma
 import platform
 
+from const import PACKAGE_NAME
 from config import config
 
 if platform.system() == "Windows":
@@ -227,8 +228,8 @@ def clear_dumped_json(emulator_id):
             emulator_id,
             "shell",
             "rm",
-            "/sdcard/Android/data/com.hypergryph.arknights/files/*.json",
-            "/sdcard/Android/data/com.hypergryph.arknights/files/*.cs",
+            f"/sdcard/Android/data/{PACKAGE_NAME}/files/*.json",
+            f"/sdcard/Android/data/{PACKAGE_NAME}/files/*.cs",
         ],
     )
 
