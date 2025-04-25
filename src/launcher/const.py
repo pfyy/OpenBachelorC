@@ -1,1 +1,1 @@
-PACKAGE_NAME = "com.hypergryph.arknights"
+PACKAGE_NAME = "com.YoStarEN.Arknights"
