@@ -153,8 +153,39 @@ def root_emulator(emulator_id):
     print("info: emulator rooted")
 
 
+def check_root(emulator_id):
+    check_root_cmd = "id -u"
+    if config["use_su"]:
+        check_root_cmd = f"su -c {check_root_cmd}"
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            check_root_cmd,
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if proc.stdout.strip() == "0":
+        return True
+
+    return False
+
+
 def start_frida_server(emulator_id):
     root_emulator(emulator_id)
+
+    root_flag = check_root(emulator_id)
+
+    if not root_flag:
+        print("warn: root check failed, skipping frida server startup")
+        return
+
+    print("info: root check passed")
 
     frida_port = config["frida_port"]
 
