@@ -98,7 +98,7 @@ def start_game(emulator_id):
                 "-H",
                 f"127.0.0.1:{frida_port}",
                 "-n",
-                "PvZ Online",
+                "PvZ Online EN",
                 "-l",
                 JAVA_SCRIPT_FILEPATH,
                 "-P",
