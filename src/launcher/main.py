@@ -19,24 +19,30 @@ from inject import start_game
 from util import register_callback_func, invoke_callback_func
 from dump import pull_dumped_json
 
+
+command_lst = [
+    "zero_cost",
+    "zero_deploy_cnt",
+    "deploy_everywhere",
+    "zero_cooldown",
+    "unlimited_token",
+    "no_sp",
+    "withdraw_everything",
+    "heal_everyone",
+    "unlimited_ammo",
+    "eat_enemy",
+    "global_range",
+    "anti_air",
+    "true_aoe",
+    "no_ban_card",
+]
+
 trainer_word_completer = WordCompleter(
     [
         "enable",
         "disable",
-        "zero_cost",
-        "zero_deploy_cnt",
-        "deploy_everywhere",
-        "zero_cooldown",
-        "unlimited_token",
-        "no_sp",
-        "withdraw_everything",
-        "heal_everyone",
-        "unlimited_ammo",
-        "eat_enemy",
-        "global_range",
-        "anti_air",
-        "true_aoe",
-        "no_ban_card",
+        *command_lst,
+        "all",
     ],
     match_middle=True,
 )
@@ -134,4 +140,8 @@ if __name__ == "__main__":
             cmd_prefix = "disable:"
 
         for cmd in cmd_arr:
-            game.exec_trainer_command(f"{cmd_prefix}{cmd}")
+            if cmd == "all":
+                for rel_cmd in command_lst:
+                    game.exec_trainer_command(f"{cmd_prefix}{rel_cmd}")
+            else:
+                game.exec_trainer_command(f"{cmd_prefix}{cmd}")
