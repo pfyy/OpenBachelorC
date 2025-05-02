@@ -1,11 +1,33 @@
+import os
+import time
+import subprocess
+import json
+
 import frida
+import requests
 
+from const import PACKAGE_NAME
 from config import config
+from adb import start_gadget
 
-JAVA_SCRIPT_FILEPATH = "rel/java.js"
-NATIVE_SCRIPT_FILEPATH = "rel/native.js"
-EXTRA_SCRIPT_FILEPATH = "rel/extra.js"
-TRAINER_SCRIPT_FILEPATH = "rel/trainer.js"
+SCRIPT_DIRPATH = "rel/"
+
+JAVA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "java.js")
+NATIVE_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "native.js")
+EXTRA_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "extra.js")
+TRAINER_SCRIPT_FILEPATH = os.path.join(SCRIPT_DIRPATH, "trainer.js")
+
+
+def test_remote_port():
+    try:
+        requests.get("http://127.0.0.1:27042", proxies={"http": "", "https": ""})
+        return True
+    except Exception:
+        return False
+
+
+def handle_script_message(script_filepath, message, data):
+    print(f"message [{os.path.basename(script_filepath)}]:", message)
 
 
 def load_script(device, pid, script_filepath, script_config):
@@ -14,6 +36,10 @@ def load_script(device, pid, script_filepath, script_config):
     with open(script_filepath, encoding="utf-8") as f:
         script_str = f.read()
     script = session.create_script(script_str)
+    script.on(
+        "message",
+        lambda message, data: handle_script_message(script_filepath, message, data),
+    )
     script.load()
 
     for k, v in script_config.items():
@@ -43,13 +69,44 @@ class Game:
 
 
 def start_game(emulator_id):
-    device = frida.get_device(emulator_id)
+    device = frida.get_remote_device()
 
-    pid = device.spawn("com.hypergryph.arknights")
+    if config["use_gadget"]:
+        pid = "Gadget"
+
+        start_gadget(emulator_id)
+
+        for i in range(100):
+            if test_remote_port():
+                break
+            else:
+                time.sleep(0.1)
+
+    else:
+        pid = device.spawn(PACKAGE_NAME)
 
     host = config["host"]
     port = config["port"]
     proxy_url = f"http://{host}:{port}"
+
+    if config["dual_mode"]:
+        frida_port = config["frida_port"]
+
+        proc = subprocess.run(
+            [
+                "frida",
+                "-H",
+                f"127.0.0.1:{frida_port}",
+                "-n",
+                "PvZ Online",
+                "-l",
+                JAVA_SCRIPT_FILEPATH,
+                "-P",
+                json.dumps({"proxy_url": proxy_url, "no_proxy": config["no_proxy"]}),
+                "-q",
+                "--eternalize",
+            ]
+        )
 
     java_script = load_script(
         device,

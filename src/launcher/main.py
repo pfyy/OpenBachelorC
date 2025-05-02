@@ -10,6 +10,8 @@ from adb import (
     upload_frida_server_if_necessary,
     start_frida_server,
     start_reverse_proxy,
+    clear_forward_proxy,
+    start_forward_proxy,
     clear_dumped_json,
 )
 from config import config
@@ -17,24 +19,30 @@ from inject import start_game
 from util import register_callback_func, invoke_callback_func
 from dump import pull_dumped_json
 
+
+command_lst = [
+    "zero_cost",
+    "zero_deploy_cnt",
+    "deploy_everywhere",
+    "zero_cooldown",
+    "unlimited_token",
+    "no_sp",
+    "withdraw_everything",
+    "heal_everyone",
+    "unlimited_ammo",
+    "eat_enemy",
+    "global_range",
+    "anti_air",
+    "true_aoe",
+    "no_ban_card",
+]
+
 trainer_word_completer = WordCompleter(
     [
         "enable",
         "disable",
-        "zero_cost",
-        "zero_deploy_cnt",
-        "deploy_everywhere",
-        "zero_cooldown",
-        "unlimited_token",
-        "no_sp",
-        "withdraw_everything",
-        "heal_everyone",
-        "unlimited_ammo",
-        "eat_enemy",
-        "global_range",
-        "anti_air",
-        "true_aoe",
-        "no_ban_card",
+        *command_lst,
+        "all",
     ],
     match_middle=True,
 )
@@ -74,6 +82,16 @@ if __name__ == "__main__":
 
     if host == "127.0.0.1":
         start_reverse_proxy(emulator_id, port)
+
+    frida_port = config["frida_port"]
+    gadget_port = config["gadget_port"]
+
+    clear_forward_proxy(emulator_id)
+    if config["use_gadget"]:
+        start_forward_proxy(emulator_id, gadget_port)
+        start_forward_proxy(emulator_id, frida_port, frida_port)
+    else:
+        start_forward_proxy(emulator_id, frida_port)
 
     game = start_game(emulator_id)
 
@@ -122,4 +140,8 @@ if __name__ == "__main__":
             cmd_prefix = "disable:"
 
         for cmd in cmd_arr:
-            game.exec_trainer_command(f"{cmd_prefix}{cmd}")
+            if cmd == "all":
+                for rel_cmd in command_lst:
+                    game.exec_trainer_command(f"{cmd_prefix}{rel_cmd}")
+            else:
+                game.exec_trainer_command(f"{cmd_prefix}{cmd}")

@@ -1,21 +1,25 @@
 import subprocess
 import os
 import lzma
+import platform
 
-ADB_FILEPATH = "platform-tools/adb.exe"
+from const import PACKAGE_NAME
+from config import config
+
+if platform.system() == "Windows":
+    ADB_FILEPATH = "platform-tools/adb.exe"
+else:
+    ADB_FILEPATH = "adb"
 
 MAX_NUM_MUMU_EMU = 4
 MAX_NUM_LD_EMU = 4
 
 ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
-    "x86_64": "frida-server/frida-server-16.5.9-android-x86_64.xz",
-    "arm64-v8a": "frida-server/frida-server-16.5.9-android-arm64.xz",
-    "x86": "frida-server/frida-server-16.5.9-android-x86.xz",
-    "armeabi-v7a": "frida-server/frida-server-16.5.9-android-arm.xz",
-    "armeabi": "frida-server/frida-server-16.5.9-android-arm.xz",
+    "arm64-v8a": "frida-server/frida-server-16.6.6-android-arm64.xz",
+    "x86_64": "frida-server/frida-server-16.6.6-android-x86_64.xz",
 }
 
-ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/frida-server-16.5.9"
+ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/florida-16.6.6"
 
 TMP_DIRPATH = "tmp/"
 
@@ -40,11 +44,11 @@ def connect_to_emulator():
 
     # MUMU
     for i in range(MAX_NUM_MUMU_EMU):
-        emulator_id_lst.append(f"127.0.0.1:{16384+32*i}")
+        emulator_id_lst.append(f"127.0.0.1:{16384 + 32 * i}")
 
     # LD
     for i in range(MAX_NUM_LD_EMU):
-        emulator_id_lst.append(f"127.0.0.1:{5555+2*i}")
+        emulator_id_lst.append(f"127.0.0.1:{5555 + 2 * i}")
 
     # try connecting
     proc_lst = []
@@ -95,6 +99,11 @@ def upload_frida_server_if_necessary(emulator_id):
 
     with lzma.open(frida_server_xz_filepath) as f:
         frida_server_binary = f.read()
+
+    frida_server_binary = frida_server_binary.replace(
+        b"frida-agent-<arch>.so", b"florida-123-<arch>.so"
+    )
+
     with open(frida_server_filepath, "wb") as f:
         f.write(frida_server_binary)
 
@@ -144,8 +153,48 @@ def root_emulator(emulator_id):
     print("info: emulator rooted")
 
 
+def check_root(emulator_id):
+    check_root_cmd = "id -u"
+    if config["use_su"]:
+        check_root_cmd = f"su -c {check_root_cmd}"
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            check_root_cmd,
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    if proc.stdout.strip() == "0":
+        return True
+
+    return False
+
+
 def start_frida_server(emulator_id):
     root_emulator(emulator_id)
+
+    root_flag = check_root(emulator_id)
+
+    if not root_flag:
+        print("warn: root check failed, skipping frida server startup")
+        return
+
+    print("info: root check passed")
+
+    frida_port = config["frida_port"]
+
+    start_frida_server_cmd = (
+        f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -l 127.0.0.1:{frida_port} -D -C"
+    )
+
+    if config["use_su"]:
+        start_frida_server_cmd = f"su -c {start_frida_server_cmd}"
 
     # flag "-C" avoids blocking
     proc = subprocess.run(
@@ -154,7 +203,7 @@ def start_frida_server(emulator_id):
             "-s",
             emulator_id,
             "shell",
-            f"'{ANDROID_FRIDA_SERVER_FILEPATH}' -D -C",
+            start_frida_server_cmd,
         ],
     )
 
@@ -166,6 +215,33 @@ def start_reverse_proxy(emulator_id, port):
         [ADB_FILEPATH, "-s", emulator_id, "reverse", f"tcp:{port}", f"tcp:{port}"],
     )
     print("info: adb reverse proxy started")
+
+
+def clear_forward_proxy(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "forward",
+            "--remove-all",
+        ],
+    )
+    print("info: adb forward proxy cleared")
+
+
+def start_forward_proxy(emulator_id, remote_port, local_port=27042):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "forward",
+            f"tcp:{local_port}",
+            f"tcp:{remote_port}",
+        ],
+    )
+    print("info: adb forward proxy started")
 
 
 def pull_file(emulator_id, remote_filepath, local_filepath):
@@ -183,7 +259,19 @@ def clear_dumped_json(emulator_id):
             emulator_id,
             "shell",
             "rm",
-            "/sdcard/Android/data/com.hypergryph.arknights/files/*.json",
-            "/sdcard/Android/data/com.hypergryph.arknights/files/*.cs",
+            f"/sdcard/Android/data/{PACKAGE_NAME}/files/*.json",
+            f"/sdcard/Android/data/{PACKAGE_NAME}/files/*.cs",
+        ],
+    )
+
+
+def start_gadget(emulator_id):
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "shell",
+            "monkey -p anime.pvz.online -c android.intent.category.LAUNCHER 1",
         ],
     )

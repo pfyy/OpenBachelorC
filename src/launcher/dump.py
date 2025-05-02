@@ -1,11 +1,12 @@
 import os
 import json
 
+from const import PACKAGE_NAME
 from adb import pull_file
 
 DUMP_DIRPATH = "dump/"
 
-remote_filepath_prefix = "/sdcard/Android/data/com.hypergryph.arknights/files/"
+remote_filepath_prefix = f"/sdcard/Android/data/{PACKAGE_NAME}/files/"
 
 remote_local_filename_mapping = {
     "dump.cs": "dump.cs",
@@ -53,6 +54,9 @@ remote_local_filename_mapping = {
     "tip_db (Torappu.TipDB).json": "tip_table.json",
     "TokenDB.json": "token_table.json",
     "zone_db (Torappu.ZoneDB).json": "zone_table.json",
+    "init_text_db (Torappu.InitTextDB).json": "init_text.json",
+    "main_text_db (Torappu.MainTextDB).json": "main_text.json",
+    "meta_ui_db (Torappu.MetaUIDisplayDB).json": "meta_ui_table.json",
 }
 
 
