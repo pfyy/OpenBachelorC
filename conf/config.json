@@ -4,7 +4,7 @@
     "no_proxy": false,
     "frida_port": 9443,
     "gadget_port": 10443,
-    "use_su": true,
+    "use_su": false,
     "use_gadget": false,
     "dual_mode": false,
     "enable_extra": true,
