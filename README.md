@@ -9,23 +9,17 @@ Discord: [https://discord.gg/W4yPMpBv8F](https://discord.gg/W4yPMpBv8F)
 
 ## Supported Environment
 
-~~MUMU12.~~
+MUMU12.
 
 ```
 https://a11.gdl.netease.com/MuMuNG-setup-V3.8.18.2845-overseas-0417125205.exe
 ```
 
-~~LD9.~~
+LD9.
 
 ```
 https://ldcdn.ldmnq.com/download/package/LDPlayer9.0.exe
 ```
-
-A rooted arm64 android phone.
-
-A jailed arm64 android phone (with OpenBachelorG).
-
-MUMU 12 (with OpenBachelorG proxy patch build).
 
 ## How-To
 
@@ -40,8 +34,6 @@ MUMU 12 (with OpenBachelorG proxy patch build).
 2. Run `setup.cmd`.
 
 3. Open your emulator/phone's settings, enable its root permission and adb connection.
-
-4. Run `load_config_[YOUR_DEVICE].cmd`. For example, if you are using a jailed phone (no root permission), run `load_config_jailed_phone.cmd`.
 
 ### 2. Run Client
 
