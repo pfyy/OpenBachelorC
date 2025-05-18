@@ -89,25 +89,6 @@ def start_game(emulator_id):
     port = config["port"]
     proxy_url = f"http://{host}:{port}"
 
-    if config["dual_mode"]:
-        frida_port = config["frida_port"]
-
-        proc = subprocess.run(
-            [
-                "frida",
-                "-H",
-                f"127.0.0.1:{frida_port}",
-                "-n",
-                "PvZ Online",
-                "-l",
-                JAVA_SCRIPT_FILEPATH,
-                "-P",
-                json.dumps({"proxy_url": proxy_url, "no_proxy": config["no_proxy"]}),
-                "-q",
-                "--eternalize",
-            ]
-        )
-
     java_script = load_script(
         device,
         pid,

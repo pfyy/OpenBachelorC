@@ -4,9 +4,8 @@
     "no_proxy": false,
     "frida_port": 9443,
     "gadget_port": 10443,
-    "use_su": true,
-    "use_gadget": false,
-    "dual_mode": false,
+    "use_su": false,
+    "use_gadget": true,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,
@@ -14,7 +13,7 @@
         "vision": true,
         "vision_font_size": 22
     },
-    "enable_trainer": false,
+    "enable_trainer": true,
     "trainer_config": {
         "dump_json": false
     }

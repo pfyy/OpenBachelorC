@@ -89,7 +89,6 @@ if __name__ == "__main__":
     clear_forward_proxy(emulator_id)
     if config["use_gadget"]:
         start_forward_proxy(emulator_id, gadget_port)
-        start_forward_proxy(emulator_id, frida_port, frida_port)
     else:
         start_forward_proxy(emulator_id, frida_port)
 
