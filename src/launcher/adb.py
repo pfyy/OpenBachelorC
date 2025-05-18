@@ -2,6 +2,7 @@ import subprocess
 import os
 import lzma
 import platform
+import json
 
 from const import PACKAGE_NAME
 from config import config
@@ -273,5 +274,42 @@ def start_gadget(emulator_id):
             emulator_id,
             "shell",
             "monkey -p anime.pvz.online.en -c android.intent.category.LAUNCHER 1",
+        ],
+    )
+
+
+def upload_standalone_script(emulator_id, script_filepath, script_conf):
+    script_filename = os.path.basename(script_filepath)
+    script_conf_filename = os.path.splitext(script_filename)[0] + ".config"
+
+    tmp_script_conf_filepath = os.path.join(TMP_DIRPATH, script_conf_filename)
+
+    os.makedirs(TMP_DIRPATH, exist_ok=True)
+    with open(tmp_script_conf_filepath, "w") as f:
+        json.dump({"parameters": script_conf}, f, indent=4)
+
+    proc = subprocess.run(
+        [ADB_FILEPATH, "-s", emulator_id, "shell", "mkdir -p /sdcard/openbachelor"],
+    )
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "push",
+            script_filepath,
+            f"/sdcard/openbachelor/{script_filename}",
+        ],
+    )
+
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "-s",
+            emulator_id,
+            "push",
+            tmp_script_conf_filepath,
+            f"/sdcard/openbachelor/{script_conf_filename}",
         ],
     )
