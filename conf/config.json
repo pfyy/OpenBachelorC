@@ -4,8 +4,8 @@
     "no_proxy": false,
     "frida_port": 9443,
     "gadget_port": 10443,
-    "use_su": false,
-    "use_gadget": true,
+    "use_su": true,
+    "use_gadget": false,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,
