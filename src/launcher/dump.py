@@ -4,7 +4,7 @@ import json
 from const import PACKAGE_NAME
 from adb import pull_file
 
-DUMP_DIRPATH = "dump/"
+DUMP_DIRPATH = "dump_en/"
 
 remote_filepath_prefix = f"/sdcard/Android/data/{PACKAGE_NAME}/files/"
 
