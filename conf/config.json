@@ -13,7 +13,7 @@
         "vision": true,
         "vision_font_size": 22
     },
-    "enable_trainer": true,
+    "enable_trainer": false,
     "trainer_config": {
         "dump_json": false
     }
