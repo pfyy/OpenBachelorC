@@ -12,7 +12,7 @@ Discord: [https://discord.gg/W4yPMpBv8F](https://discord.gg/W4yPMpBv8F)
 ~~MUMU12.~~
 
 ```
-https://a11.gdl.netease.com/MuMuNG-setup-V3.8.18.2845-overseas-0417125205.exe
+https://a11.gdl.netease.com/MuMuNG-setup-V4.1.28.3714-overseas-0521203337.exe
 ```
 
 ~~LD9.~~
