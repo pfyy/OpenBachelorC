@@ -30,8 +30,11 @@ def handle_script_message(script_filepath, message, data):
     print(f"message [{os.path.basename(script_filepath)}]:", message)
 
 
-def load_script(device, pid, script_filepath, script_config):
-    session = device.attach(pid)
+def load_script(device, pid, script_filepath, script_config, is_emulated_realm=False):
+    if is_emulated_realm:
+        session = device.attach(pid, realm="emulated")
+    else:
+        session = device.attach(pid)
 
     with open(script_filepath, encoding="utf-8") as f:
         script_str = f.read()
@@ -89,6 +92,8 @@ def start_game(emulator_id):
     port = config["port"]
     proxy_url = f"http://{host}:{port}"
 
+    is_emulated_realm = config["use_emulated_realm"]
+
     java_script = load_script(
         device,
         pid,
@@ -100,18 +105,27 @@ def start_game(emulator_id):
         pid,
         NATIVE_SCRIPT_FILEPATH,
         {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
+        is_emulated_realm=is_emulated_realm,
     )
 
     extra_script = None
     if config["enable_extra"]:
         extra_script = load_script(
-            device, pid, EXTRA_SCRIPT_FILEPATH, config["extra_config"]
+            device,
+            pid,
+            EXTRA_SCRIPT_FILEPATH,
+            config["extra_config"],
+            is_emulated_realm=is_emulated_realm,
         )
 
     trainer_script = None
     if config["enable_trainer"]:
         trainer_script = load_script(
-            device, pid, TRAINER_SCRIPT_FILEPATH, config["trainer_config"]
+            device,
+            pid,
+            TRAINER_SCRIPT_FILEPATH,
+            config["trainer_config"],
+            is_emulated_realm=is_emulated_realm,
         )
 
     device.resume(pid)

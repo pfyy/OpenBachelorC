@@ -1,4 +1,3 @@
 frida==16.6.6
 prompt_toolkit==3.0.50
 requests==2.32.3
-frida-tools==13.7.1
