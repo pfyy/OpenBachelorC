@@ -111,9 +111,9 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "files": [
-    "src/script/java/index.ts",
-    "src/script/native/index.ts",
-    "src/script/extra/index.ts",
-    "src/script/trainer/index.ts",
+    "src/script1666/java/index.ts",
+    "src/script1666/native/index.ts",
+    "src/script1666/extra/index.ts",
+    "src/script1666/trainer/index.ts",
   ]
 }

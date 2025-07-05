@@ -9,6 +9,9 @@
 /dump/
 *.LICENSE.txt
 
+/src/script1666/**/*.ts
+/src/script1666/**/*.js
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,node
 
