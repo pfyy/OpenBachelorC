@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@types/frida-gum": "^19.0.0",
+    "@types/frida-gum": "^18.8.2",
     "@types/node": "^24.0.10",
     "frida-compile": "^19.0.4",
     "frida-il2cpp-bridge": "^0.12.0",
