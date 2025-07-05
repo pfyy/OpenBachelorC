@@ -8,6 +8,7 @@
 /trainer.txt
 /dump/
 *.LICENSE.txt
+/pip_sav/
 
 /src/script1666/**/*.ts
 /src/script1666/**/*.js
