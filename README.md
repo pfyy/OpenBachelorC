@@ -17,6 +17,10 @@ Mac (Apple silicon) with AVD (Android Studio) (recommended: arm64, Android 15, G
 
 > FYI: For AVD users, do not use Google Play Store image, which is not readily rooted.
 
+MUMU 12 (with special OBG MUMU build).
+
+> https://a11.gdl.netease.com/MuMuNG-setup-V4.1.32.3729-overseas-0617102718.exe
+
 ## How-To
 
 ### 0. Start Server
