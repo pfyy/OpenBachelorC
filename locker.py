@@ -14,6 +14,12 @@ TARGET_TS_FILEPATH_LST = [
     "build_js_rel.cmd",
     "src/helper/helper.js",
     "src/helper/helper.py",
+    "src/script1666/java/index.ts",
+    "src/script1666/native/index.ts",
+    "src/script1666/util/index.ts",
+    "src/script1666/extra/index.ts",
+    "src/script1666/trainer/index.ts",
+    "build_js_rel1666.cmd",
 ]
 
 KEY_FILEPATH = "key.png"
