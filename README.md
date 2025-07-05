@@ -9,23 +9,9 @@ Discord: [https://discord.gg/W4yPMpBv8F](https://discord.gg/W4yPMpBv8F)
 
 ## Supported Environment
 
-~~MUMU12.~~
-
-```
-https://a11.gdl.netease.com/MuMuNG-setup-V4.1.28.3714-overseas-0521203337.exe
-```
-
-~~LD9.~~
-
-```
-https://ldcdn.ldmnq.com/download/package/LDPlayer9.0.exe
-```
-
 A rooted arm64 android phone.
 
 A jailed arm64 android phone (with OpenBachelorG).
-
-~~MUMU 12 (with OpenBachelorG proxy patch build).~~
 
 Mac (Apple silicon) with AVD (Android Studio) (recommended: arm64, Android 15, Google APIs Image).
 
