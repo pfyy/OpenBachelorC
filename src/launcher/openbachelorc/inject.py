@@ -1,10 +1,7 @@
 import os
 import time
-import subprocess
-import json
 
 import frida
-import requests
 
 from .const import PACKAGE_NAME
 from .config import config
@@ -83,11 +80,7 @@ def start_game(emulator_id):
 
         start_gadget(emulator_id)
 
-        for i in range(100):
-            if test_remote_port():
-                break
-            else:
-                time.sleep(0.1)
+        time.sleep(1)
 
     else:
         pid = device.spawn(PACKAGE_NAME)
@@ -104,6 +97,9 @@ def start_game(emulator_id):
         JAVA_SCRIPT_FILEPATH,
         {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
     )
+
+    time.sleep(2)
+    
     native_script = load_script(
         device,
         pid,
@@ -111,6 +107,8 @@ def start_game(emulator_id):
         {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
         is_emulated_realm=is_emulated_realm,
     )
+    
+    time.sleep(1)
 
     extra_script = None
     if config["enable_extra"]:
@@ -121,6 +119,7 @@ def start_game(emulator_id):
             config["extra_config"],
             is_emulated_realm=is_emulated_realm,
         )
+        time.sleep(1)
 
     trainer_script = None
     if config["enable_trainer"]:
@@ -131,8 +130,12 @@ def start_game(emulator_id):
             config["trainer_config"],
             is_emulated_realm=is_emulated_realm,
         )
+        time.sleep(1)
 
-    device.resume(pid)
+    time.sleep(1)
+    
+    if not config["use_gadget"]:
+        device.resume(pid)
 
     game = Game(device, pid, java_script, native_script, extra_script, trainer_script)
 

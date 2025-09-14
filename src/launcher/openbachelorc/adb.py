@@ -290,7 +290,7 @@ def start_gadget(emulator_id):
             "-s",
             emulator_id,
             "shell",
-            f"monkey -p {PACKAGE_NAME} -c android.intent.category.LAUNCHER 1",
+            f"am start -n {PACKAGE_NAME}/com.u8.sdk.U8UnityContext",
         ],
     )
 
