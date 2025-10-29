@@ -16,11 +16,11 @@ MAX_NUM_MUMU_EMU = 4
 MAX_NUM_LD_EMU = 4
 
 ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
-    "arm64-v8a": "frida-server/frida-server-17.2.15-android-arm64.xz",
-    "x86_64": "frida-server/frida-server-17.2.15-android-x86_64.xz",
+    "arm64-v8a": "frida-server/frida-server-17.4.2-android-arm64.xz",
+    "x86_64": "frida-server/frida-server-17.4.2-android-x86_64.xz",
 }
 
-ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/florida-17.2.15"
+ANDROID_FRIDA_SERVER_FILEPATH = "/data/local/tmp/florida-17.4.2"
 
 TMP_DIRPATH = "tmp/"
 
