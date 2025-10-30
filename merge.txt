@@ -1,0 +1,2 @@
+git merge --no-commit master
+git checkout --ours package-lock.json package.json poetry.lock pyproject.toml
