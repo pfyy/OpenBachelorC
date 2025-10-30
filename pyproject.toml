@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 
 dependencies = [
-    "frida (==16.6.6)",
+    "frida (==16.5.9)",
     "prompt-toolkit (>=3.0.51,<4.0.0)",
     "requests (>=2.32.4,<3.0.0)",
 ]
