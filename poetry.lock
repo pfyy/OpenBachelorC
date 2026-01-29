@@ -150,26 +150,26 @@ files = [
 
 [[package]]
 name = "frida"
-version = "17.6.1"
+version = "17.6.2"
 description = "Dynamic instrumentation toolkit for developers, reverse-engineers, and security researchers"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "frida-17.6.1-cp37-abi3-macosx_10_13_x86_64.whl", hash = "sha256:635b8c28b7ac87ca782c50365e1f25053303b4a1afe937a911dd2c46ab3e7c07"},
-    {file = "frida-17.6.1-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:e1395d3ffc643241f2d8a805f4e62666153d641b9f85246ae426600d792d6641"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux1_i686.whl", hash = "sha256:2fa51b8638cd2c0c49fa56463b4ff08c00e6f4ef90b5e721cf7a486cc37b062d"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux1_x86_64.whl", hash = "sha256:096f181ef33065d9b9a8b6da3219b82f673058e21486393d0205f03db309ec4f"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux2014_aarch64.whl", hash = "sha256:6330082c9a1b1e77686ad33f3664d04d401a0622a31978fe39ed941dcb585c11"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux2014_armv7l.whl", hash = "sha256:48163f081be2f4d3f77214f7aeec5b77b72c2e8c4df1fe2b9cab7aa32a854864"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux_2_17_aarch64.whl", hash = "sha256:de0dff664df0cd09b7b9439dc2dd3712d63f7cc02b6d3b58a1601d72d7edd7e7"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux_2_17_armv7l.whl", hash = "sha256:8028716efe5599a3e1120f47d670a11321f7ffbc0052c67d7d3afe13b8fa1766"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux_2_5_i686.whl", hash = "sha256:61b63adf4bf0a176df82a1265526a4fb73fc53698de56ba16f1e3026af505db3"},
-    {file = "frida-17.6.1-cp37-abi3-manylinux_2_5_x86_64.whl", hash = "sha256:e04ed93fd41d10ddff01ce30810f4b6219174ad709ba85d094e937bd448db824"},
-    {file = "frida-17.6.1-cp37-abi3-win32.whl", hash = "sha256:605c1c734d44eca3a20e2c6a3874f84441899c8d879881b0ed000f1b2d10ec4e"},
-    {file = "frida-17.6.1-cp37-abi3-win_amd64.whl", hash = "sha256:4f241639259eafe89a1fc5ad034084f3662aec9b6f641062ec561b648bc05214"},
-    {file = "frida-17.6.1-cp37-abi3-win_arm64.whl", hash = "sha256:102a333a129cbd8c4abb966fe04d2756d9574dfca2c7b6d28cf404657cbbccad"},
-    {file = "frida-17.6.1.tar.gz", hash = "sha256:d6f11cd3ce513065d2761623c64238328eb58108abe5fbe0dcd9eef211129465"},
+    {file = "frida-17.6.2-cp37-abi3-macosx_10_13_x86_64.whl", hash = "sha256:9763d7297643492a06d37a0fa21d43f414c3b7e58db0e81592c15d366a6adb79"},
+    {file = "frida-17.6.2-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:cbda78d63a9215086c7c6a05db26be0d6016f6f919e7135d3b9ffb46793ae3cb"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux1_i686.whl", hash = "sha256:eb2cfa5a008448e1f2a69812b419a08424fdc4a8a9b9bf92359eb96b73b84c4d"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux1_x86_64.whl", hash = "sha256:9c4508c427be455ee89730786bd9383eda7238fb3db22f85c255a667dd4bc491"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux2014_aarch64.whl", hash = "sha256:e8544826fec0f592213b1c6d3b8a761850728bb06ac0112e872d3eb275804e69"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux2014_armv7l.whl", hash = "sha256:989a3cf929f7d07a54359bd92726a53487083d0f5d15aeb2d866ddb3ff23a08d"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux_2_17_aarch64.whl", hash = "sha256:31ae33288cba23b56e6798319cdb70a75dff346084ddae5a51de4c8f84c1be53"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux_2_17_armv7l.whl", hash = "sha256:d08e6963a35ed439c9c8c562da5f669d8dc04ea1d6e51a40a8f87b1036ae9ebc"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux_2_5_i686.whl", hash = "sha256:8587e692b0dabd79346bd60911b117e964d1dce9fb5fa4a8f09ebfceda863945"},
+    {file = "frida-17.6.2-cp37-abi3-manylinux_2_5_x86_64.whl", hash = "sha256:65d80cc275304e6dd4b9b7ebcfab22d65273e47f0a91cb3e6b13945398998a03"},
+    {file = "frida-17.6.2-cp37-abi3-win32.whl", hash = "sha256:38b4b46f109f09001c5f65729672b6c2237bd06a83fbd511cf448c040738ddee"},
+    {file = "frida-17.6.2-cp37-abi3-win_amd64.whl", hash = "sha256:c8669c36875c4e87064ffbda3ee59075c85de0eee76131e7ab1dde30e16289ea"},
+    {file = "frida-17.6.2-cp37-abi3-win_arm64.whl", hash = "sha256:b33366f5293c16d80c3929d15820d88e1e7432d3f28e9d031d568a40a8e2b29b"},
+    {file = "frida-17.6.2.tar.gz", hash = "sha256:1dfbf61d07702859b897ce5ecf8f2107ef941647e7c461bfdb681605a0747b51"},
 ]
 
 [[package]]
@@ -528,4 +528,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12"
-content-hash = "505df65e1696da2cbd4e4b8db28562ce6825ac7d13413c6dc38736229d10820d"
+content-hash = "f0b476bac623432ee09f1d2a0c729fa5f421de3378760cf70054ac2fd01150ea"
