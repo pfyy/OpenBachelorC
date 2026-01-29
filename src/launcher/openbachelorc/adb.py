@@ -15,7 +15,7 @@ else:
 MAX_NUM_MUMU_EMU = 4
 MAX_NUM_LD_EMU = 4
 
-FRIDA_VERSION = "17.6.1"
+FRIDA_VERSION = "17.6.2"
 
 ARCH_TO_FRIDA_SERVER_XZ_FILEPATH = {
     "arm64-v8a": f"frida-server/frida-server-{FRIDA_VERSION}-android-arm64.xz",
