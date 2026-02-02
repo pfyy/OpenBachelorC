@@ -47,6 +47,9 @@ def main():
     lief_config = lief.PE.Builder.config_t()
     lief_config.imports = True
 
+    # what is your fucking default, lief?
+    lief_config.tls = False
+
     victim_dll.write(victim_dll_filepath, config=lief_config)
 
 
