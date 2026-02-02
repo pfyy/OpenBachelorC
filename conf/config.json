@@ -4,6 +4,7 @@
     "multiplayer_port": 8543,
     "icebreaker_port": 8544,
     "no_proxy": false,
+    "attach_pc": false,
     "frida_port": 9443,
     "gadget_port": 10443,
     "use_su": true,
