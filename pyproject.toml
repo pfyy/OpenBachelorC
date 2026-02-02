@@ -10,6 +10,7 @@ dependencies = [
     "frida (==17.6.2)",
     "prompt-toolkit (>=3.0.52,<4.0.0)",
     "requests (>=2.32.5,<3.0.0)",
+    "lief (>=0.17.3,<0.18.0)",
 ]
 
 [tool.poetry]
