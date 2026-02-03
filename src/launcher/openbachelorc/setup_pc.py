@@ -31,7 +31,7 @@ def main():
         victim_dll_filepath.name + ".bak"
     )
     if not victim_dll_bak_filepath.is_file():
-        shutil.copy(victim_dll_filepath, victim_dll_bak_filepath)
+        shutil.copy2(victim_dll_filepath, victim_dll_bak_filepath)
 
     frida_dll_filepath = ak_filepath.parent / FRIDA_GADGET_FILENAME
     with lzma.open(FRIDA_GADGET_XZ_FILEPATH) as f:
