@@ -216,6 +216,7 @@ def main():
     finally:
         if not config["attach_pc"]:
             cleanup(emulator_id)
+            clear_forward_proxy(emulator_id)
 
 
 if __name__ == "__main__":
