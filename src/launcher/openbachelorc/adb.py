@@ -333,3 +333,12 @@ def kill_frida_server(emulator_id):
     process_name = os.path.basename(ANDROID_FRIDA_SERVER_FILEPATH)
 
     kill_root_process(emulator_id, process_name)
+
+
+def kill_adb_server():
+    proc = subprocess.run(
+        [
+            ADB_FILEPATH,
+            "kill-server",
+        ],
+    )

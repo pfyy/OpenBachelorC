@@ -16,6 +16,7 @@ from .adb import (
     clear_dumped_json,
     kill_frida_server,
     kill_root_process,
+    kill_adb_server,
 )
 from .config import config
 from .inject import start_game
@@ -203,6 +204,7 @@ def main():
         setup_config()
 
         if config["attach_pc"]:
+            kill_adb_server()
             emulator_id = None
         else:
             emulator_id = get_emulator_id()
