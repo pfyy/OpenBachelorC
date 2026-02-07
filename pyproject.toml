@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = [{ name = "Your Name", email = "you@example.com" }]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.15"
 
 dependencies = [
     "frida (==17.6.2)",
@@ -26,6 +26,7 @@ ruff = "^0.14.10"
 pytest = "^9.0.2"
 poethepoet = "0.37.0"
 pycryptodome = "^3.23.0"
+pyinstaller = "^6.18.0"
 
 [tool.poetry.scripts]
 main = "openbachelorc.main:main"
