@@ -1,6 +1,6 @@
 set -euo pipefail
 
-pkg install xz-utils
+pkg install -y xz-utils
 
 tar -xf frida-17.6.2.tar.gz
 
