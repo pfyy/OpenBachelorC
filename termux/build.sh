@@ -2,7 +2,7 @@ set -euo pipefail
 
 pkg install -y xz-utils
 
-FRIDA_VERSION=17.6.2
+FRIDA_VERSION=17.9.1
 
 tar -xf "frida-${FRIDA_VERSION}.tar.gz"
 
