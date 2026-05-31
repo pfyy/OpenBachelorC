@@ -4,3 +4,4 @@ if config["use_gadget"]:
     PACKAGE_NAME = "anime.pvz.online"
 else:
     PACKAGE_NAME = "com.hypergryph.arknights"
+    # PACKAGE_NAME = "com.YoStarEN.Arknights"
