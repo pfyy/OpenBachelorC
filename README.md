@@ -4,9 +4,6 @@ OpenBachelor Client. For PvZ Online.
 
 This project is a game launcher only. If you are looking for a game server, please look at OpenBachelor Server.
 
-Discord: [https://discord.gg/W4yPMpBv8F](https://discord.gg/W4yPMpBv8F)
-
-
 ## Supported Environment
 
 A rooted arm64 android phone.
