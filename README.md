@@ -10,6 +10,8 @@ A rooted arm64 android phone.
 
 A jailed arm64 android phone (with OpenBachelorG).
 
+MUMU 12 (with OpenBachelorG MUMU build).
+
 Mac (Apple silicon) with AVD (Android Studio) (recommended: arm64, Android 15, Google APIs Image).
 
 > FYI: For AVD users, do not use Google Play Store image, which is not readily rooted.
