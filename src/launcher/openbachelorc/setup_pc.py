@@ -2,6 +2,7 @@ from pathlib import Path
 import shutil
 import lzma
 from tkinter.filedialog import askopenfilename
+import sys
 
 import lief
 
@@ -18,14 +19,14 @@ def main():
     ak_filepath = askopenfilename(filetypes=[("Arknights", "Arknights.exe")])
     if not ak_filepath:
         print("err: Arknights.exe not given")
-        exit(1)
+        sys.exit(1)
 
     ak_filepath = Path(ak_filepath)
 
     victim_dll_filepath = ak_filepath.parent / "hgsdk.dll"
     if not victim_dll_filepath.is_file():
         print("err: victim dll not found")
-        exit(1)
+        sys.exit(1)
 
     victim_dll_bak_filepath = victim_dll_filepath.with_name(
         victim_dll_filepath.name + ".bak"

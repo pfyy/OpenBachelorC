@@ -39,7 +39,7 @@ def get_key():
 
     if not key_filepath.is_file():
         print("err: key not found")
-        exit(1)
+        sys.exit(1)
 
     key_binary = key_filepath.read_bytes()
 

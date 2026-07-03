@@ -1,3 +1,5 @@
+import sys
+
 from .config import config
 from .adb import (
     get_running_emulators,
@@ -16,7 +18,7 @@ def main():
 
         if not running_emulator_id_lst:
             print("error: emulator not found")
-            exit(1)
+            sys.exit(1)
 
     emulator_id = running_emulator_id_lst[0]
     print(f"info: using emulator {emulator_id}")
