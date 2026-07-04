@@ -10,7 +10,7 @@
     "use_su": true,
     "use_gadget": false,
     "use_emulated_realm": false,
-    "no_spawn": true,
+    "no_spawn": false,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,
