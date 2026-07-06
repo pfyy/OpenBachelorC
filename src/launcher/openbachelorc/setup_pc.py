@@ -53,6 +53,8 @@ def main():
 
     victim_dll.write(victim_dll_filepath, config=lief_config)
 
+    Path("ak_exe_filepath.txt").write_text(str(ak_filepath), encoding="utf-8")
+
 
 if __name__ == "__main__":
     main()

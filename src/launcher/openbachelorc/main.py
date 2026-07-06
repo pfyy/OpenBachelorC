@@ -1,5 +1,7 @@
 import sys
 import argparse
+from pathlib import Path
+import subprocess
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.history import FileHistory
@@ -206,6 +208,11 @@ def main():
         if config["attach_pc"]:
             kill_adb_server()
             emulator_id = None
+
+            subprocess.Popen(
+                f'"{Path("ak_exe_filepath.txt").read_text(encoding="utf-8")}"',
+                shell=True,
+            )
         else:
             emulator_id = get_emulator_id()
 
