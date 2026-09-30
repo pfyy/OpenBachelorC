@@ -25,6 +25,7 @@ from .inject import start_game
 from .util import register_callback_func, invoke_callback_func
 from .dump import pull_dumped_json
 
+from .pc_const import AK_EXE_FILEPATH_TXT_FILEPATH
 
 command_lst = [
     "zero_cost",
@@ -211,7 +212,7 @@ def main():
             emulator_id = None
 
             subprocess.Popen(
-                f'"{Path("ak_exe_filepath.txt").read_text(encoding="utf-8")}"',
+                f'"{Path(AK_EXE_FILEPATH_TXT_FILEPATH).read_text(encoding="utf-8")}"',
                 shell=True,
             )
         else:

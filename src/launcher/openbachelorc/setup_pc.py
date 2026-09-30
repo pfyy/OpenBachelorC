@@ -6,6 +6,7 @@ import sys
 
 import lief
 
+from pc_const import AK_EXE_FILEPATH_TXT_FILEPATH, VICTIM_DLL_FILENAME
 
 FRIDA_VERSION = "17.9.1"
 FRIDA_GADGET_XZ_FILEPATH = (
@@ -23,7 +24,7 @@ def main():
 
     ak_filepath = Path(ak_filepath)
 
-    victim_dll_filepath = ak_filepath.parent / "hgdownloadsdk.dll"
+    victim_dll_filepath = ak_filepath.parent / VICTIM_DLL_FILENAME
     if not victim_dll_filepath.is_file():
         print("err: victim dll not found")
         sys.exit(1)
@@ -53,7 +54,7 @@ def main():
 
     victim_dll.write(victim_dll_filepath, config=lief_config)
 
-    Path("ak_exe_filepath.txt").write_text(str(ak_filepath), encoding="utf-8")
+    Path(AK_EXE_FILEPATH_TXT_FILEPATH).write_text(str(ak_filepath), encoding="utf-8")
 
 
 if __name__ == "__main__":
