@@ -16,7 +16,9 @@ Mac (Apple silicon) with AVD (Android Studio) (recommended: arm64, Android 15, G
 
 > FYI: For AVD users, do not use Google Play Store image, which is not readily rooted.
 
-## How-To
+Windows PC (Experimental).
+
+## How-To for Android
 
 ### 0. Start Server
 
@@ -36,3 +38,26 @@ Mac (Apple silicon) with AVD (Android Studio) (recommended: arm64, Android 15, G
 
 1. Run `main.cmd`.
 
+## How-To for Windows PC (Experimental)
+
+### 0. Start Server
+
+1. Use a game server, preferably OpenBachelor Server.
+
+### 1. Setup Client
+
+1. Install Python 3.12 and add `python.exe` to path.
+
+2. Run `setup.cmd`.
+
+### 2. Patch Game
+
+1. Run `setup_pc.cmd`.
+
+### 3. Run Client
+
+1. Run `main.cmd`.
+
+### 4. Restore Game
+
+1. Run `unset_pc.cmd`.
