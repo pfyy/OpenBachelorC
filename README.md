@@ -56,7 +56,7 @@ Windows PC (Experimental).
 
 ### 3. Run Client
 
-1. Run `main.cmd`.
+1. Run `main_attach_pc.cmd`.
 
 ### 4. Restore Game
 
