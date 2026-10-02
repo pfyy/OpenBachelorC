@@ -23,7 +23,7 @@ def test_remote_port():
         requests.get(
             "http://127.0.0.1:27042",
             proxies={"http": "", "https": ""},
-            timeout=5,
+            timeout=1,
         )
         return True
     except Exception:
