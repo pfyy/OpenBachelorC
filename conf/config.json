@@ -11,6 +11,7 @@
     "use_gadget": false,
     "use_emulated_realm": false,
     "no_spawn": true,
+    "native_delay": 2000,
     "enable_extra": true,
     "extra_config": {
         "pause_deploy": true,

@@ -35,7 +35,10 @@ def main():
     upload_standalone_script(
         emulator_id,
         "rel/native.js",
-        {"proxy_url": proxy_url},
+        {
+            "proxy_url": proxy_url,
+            "native_delay": config["native_delay"],
+        },
     )
     upload_standalone_script(emulator_id, "rel/extra.js", config["extra_config"])
 

@@ -140,7 +140,11 @@ def start_game(emulator_id):
         device,
         pid,
         NATIVE_SCRIPT_FILEPATH,
-        {"proxy_url": proxy_url, "no_proxy": config["no_proxy"]},
+        {
+            "proxy_url": proxy_url,
+            "no_proxy": config["no_proxy"],
+            "native_delay": config["native_delay"],
+        },
         is_emulated_realm=is_emulated_realm,
     )
 
