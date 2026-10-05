@@ -17,6 +17,9 @@ pipx ensurepath
 
 poetry config installer.max-workers 1
 
-poetry install || true
+poetry install --only-root
+poetry self add poetry-plugin-export
+poetry export --without-hashes | xargs -d '\n' -n 1 poetry run pip install || true
+
 (cd termux/ && bash build.sh)
 poetry install --only-root
